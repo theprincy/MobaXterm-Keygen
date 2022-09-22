@@ -22,20 +22,20 @@ def VariantBase64Encode(bs : bytes):
         result += block.encode()
 
     if left_bytes == 0:
-        return result
+        pass
     elif left_bytes == 1:
         coding_int = int.from_bytes(bs[3 * blocks_count:], 'little')
         block = VariantBase64Dict[coding_int & 0x3f]
         block += VariantBase64Dict[(coding_int >> 6) & 0x3f]
         result += block.encode()
-        return result
     else:
         coding_int = int.from_bytes(bs[3 * blocks_count:], 'little')
         block = VariantBase64Dict[coding_int & 0x3f]
         block += VariantBase64Dict[(coding_int >> 6) & 0x3f]
         block += VariantBase64Dict[(coding_int >> 12) & 0x3f]
         result += block.encode()
-        return result
+
+    return result
 
 def VariantBase64Decode(s : str):
     result = b''
@@ -110,7 +110,7 @@ if __name__ == '__main__':
         help()
         exit(0)
     else:
-        MajorVersion, MinorVersion = sys.argv[2].split('.')[0:2]
+        MajorVersion, MinorVersion = sys.argv[2].split('.')[:2]
         MajorVersion = int(MajorVersion)
         MinorVersion = int(MinorVersion)
         GenerateLicense(LicenseType.Professional, 
@@ -119,7 +119,7 @@ if __name__ == '__main__':
                         MajorVersion, 
                         MinorVersion)
         print('[*] Success!')
-        print('[*] File generated: %s' % os.path.join(os.getcwd(), 'Custom.mxtpro'))
+        print(f"[*] File generated: {os.path.join(os.getcwd(), 'Custom.mxtpro')}")
         print('[*] Please move or copy the newly-generated file to MobaXterm\'s installation path.')
         print()
 else:
