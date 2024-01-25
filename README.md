@@ -8,11 +8,14 @@ Please see source code. It is not complex.
 
 ```
 Usage:
+   
     MobaXterm-Keygen.py <UserName> <Version>
+
 
     <UserName>:      The Name licensed to
     <Version>:       The Version of MobaXterm
                      Example:    10.9
+    python MobaXterm-Keygen.py UserName 23.2
 ```
 
 EXAMPLE:
